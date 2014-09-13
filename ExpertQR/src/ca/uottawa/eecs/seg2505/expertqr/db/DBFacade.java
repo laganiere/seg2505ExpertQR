@@ -33,10 +33,10 @@ public abstract class DBFacade {
 	public abstract List<Question> getQuestionsPourExpertise(String expertise);
 	
 	/**
-	 * @param userID
+	 * @param nom
 	 * @return
 	 */
-	public abstract List<Question> getQuestionsPourUtilisateur(String userID);
+	public abstract List<Question> getQuestionsPourUtilisateur(String nom);
 	
 	/**
 	 * @param question

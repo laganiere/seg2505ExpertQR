@@ -62,9 +62,9 @@ public class QuestionControlleur {
 		List<Question> listeQuestions = null;
 		
 		if (utilisateur != null
-				&& utilisateur.getID() != null
-				&& !utilisateur.getID().isEmpty()) {
-			listeQuestions = dbFacade.getQuestionsPourUtilisateur(utilisateur.getID());
+				&& utilisateur.getNom() != null
+				&& !utilisateur.getNom().isEmpty()) {
+			listeQuestions = dbFacade.getQuestionsPourUtilisateur(utilisateur.getNom());
 		}
 		 
 		return listeQuestions;

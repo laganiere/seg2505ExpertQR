@@ -14,7 +14,6 @@
 package ca.uottawa.eecs.seg2505.expertqr.model;
 
 import java.io.Serializable;
-import java.util.UUID;
 
 import ca.uottawa.eecs.seg2505.expertqr.Constantes;
 
@@ -26,10 +25,7 @@ public class Utilisateur implements Serializable {
 	
 	private static final long serialVersionUID = 5825260818261095125L;
 	/**
-	 */
-	protected String ID = Constantes.STRING_VIDE;
-	// en general, le nom de l'utilisateur est unique
-	/**
+	 * le nom de l'utilisateur est unique
 	 */
 	protected String nom = Constantes.STRING_VIDE;
 	// les roles que l'utilisateur peut jouer
@@ -41,16 +37,8 @@ public class Utilisateur implements Serializable {
 	protected Expert roleExpert = null;
 	
 	public Utilisateur() {
-		this.ID = UUID.randomUUID().toString();
 	}
 	
-	/**
-	 * @return
-	 */
-	public String getID() {
-		return this.ID;
-	}
-
 	/**
 	 * @return
 	 */

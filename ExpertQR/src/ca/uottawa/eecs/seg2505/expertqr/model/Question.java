@@ -14,6 +14,7 @@
 package ca.uottawa.eecs.seg2505.expertqr.model;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 import ca.uottawa.eecs.seg2505.expertqr.Constantes;
 
@@ -23,6 +24,10 @@ import ca.uottawa.eecs.seg2505.expertqr.Constantes;
  */
 public class Question implements Serializable {
 	
+	private static final long serialVersionUID = -2502857776137042033L;
+	/**
+	 */
+	protected String ID = Constantes.STRING_VIDE;
 	/**
 	 */
 	protected String texte = Constantes.STRING_VIDE;
@@ -37,6 +42,14 @@ public class Question implements Serializable {
 	protected Reponse reponse = null;
 	
 	public Question() {	
+		this.ID = UUID.randomUUID().toString();
+	}
+	
+	/**
+	 * @return
+	 */
+	public String getID() {
+		return this.ID;
 	}
 	
 	/**

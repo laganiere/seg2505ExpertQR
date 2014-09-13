@@ -30,11 +30,11 @@ public class MemoireFacade extends DBFacade {
 	}
 
 	@Override
-	public List<Question> getQuestionsPourUtilisateur(String userID) {
+	public List<Question> getQuestionsPourUtilisateur(String nom) {
 		List<Question> resultat = new ArrayList<Question>();
 		for (Question quest : questions) {
 			if (quest.getUtilisateurID() != null
-					&& quest.getUtilisateurID().equals(userID)) {
+					&& quest.getUtilisateurID().equals(nom)) {
 				resultat.add(quest);
 			}
 		}

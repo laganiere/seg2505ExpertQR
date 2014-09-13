@@ -44,7 +44,7 @@ public class Test {
 		
 		Question question = new Question();
 		question.setTexte("C'est quoi ton nom?");
-		question.setUtilisateurID(utilisateur.getID());
+		question.setUtilisateurID(utilisateur.getNom());
 		question.setExpertiseRequise(expertise);
 		
 		Utilisateur expert = new Utilisateur();

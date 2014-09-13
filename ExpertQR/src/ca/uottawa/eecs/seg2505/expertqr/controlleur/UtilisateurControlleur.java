@@ -38,9 +38,7 @@ public class UtilisateurControlleur {
 	public void sauvegardeUtilisateur(Utilisateur utilisateur) {
 		if (utilisateur != null
 				&& utilisateur.getNom() != null
-				&& !utilisateur.getNom().isEmpty()
-				&& utilisateur.getID() != null
-				&& !utilisateur.getID().isEmpty()) {
+				&& !utilisateur.getNom().isEmpty()) {
 			dbFacade.sauvegardeUtilisateur(utilisateur);
 		}
 	}
