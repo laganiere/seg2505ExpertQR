@@ -42,14 +42,14 @@ public class MemoireFacade extends DBFacade {
 	}
 
 	@Override
-	public Reponse getReponsePourQuestion(Question question) {
+	public Reponse getReponsePourQuestion(String questionID) {
 		for (Question quest : questions) {
-			if (quest.equals(question)) {
-				return question.getReponse();
+			if (quest.getID().equals(questionID)) {
+				return quest.getReponse();
 			}
 		}
 		for (Reponse rep : reponses) {
-			if (rep.getQuestion().equals(question)) {
+			if (rep.getQuestion().getID().equals(questionID)) {
 				return rep;
 			}
 		}
@@ -58,7 +58,7 @@ public class MemoireFacade extends DBFacade {
 	
 
 	@Override
-	public List<Utilisateur> getExpertPourExpertise(Expertise expertise) {
+	public List<Utilisateur> getExpertPourExpertise(String expertise) {
 		List<Utilisateur> resultat = new ArrayList<Utilisateur>();
 		for (Utilisateur uti : utilisateurs) {
 			if (uti.getRoleExpert() != null

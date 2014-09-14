@@ -39,16 +39,16 @@ public abstract class DBFacade {
 	public abstract List<Question> getQuestionsPourUtilisateur(String nom);
 	
 	/**
-	 * @param question
+	 * @param questionID
 	 * @return
 	 */
-	public abstract Reponse getReponsePourQuestion(Question question);
+	public abstract Reponse getReponsePourQuestion(String questionID);
 	
 	/**
 	 * @param expertise
 	 * @return
 	 */
-	public abstract List<Utilisateur> getExpertPourExpertise(Expertise expertise);
+	public abstract List<Utilisateur> getExpertPourExpertise(String expertise);
 	
 	/**
 	 * Méthode pour sauvegarder une Question

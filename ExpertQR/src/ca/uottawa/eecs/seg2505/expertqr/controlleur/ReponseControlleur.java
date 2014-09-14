@@ -47,7 +47,7 @@ public class ReponseControlleur {
 		Reponse reponse = null;
 		
 		if (question != null) {
-			reponse = dbFacade.getReponsePourQuestion(question);
+			reponse = dbFacade.getReponsePourQuestion(question.getID());
 		}
 		 
 		return reponse;

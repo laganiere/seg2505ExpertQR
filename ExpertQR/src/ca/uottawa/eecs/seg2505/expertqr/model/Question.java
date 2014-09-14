@@ -100,6 +100,16 @@ public class Question implements Serializable {
 	public Reponse getReponse() {
 		return reponse;
 	}
+	
+	/**
+	 * @return
+	 */
+	public String getReponseID() {
+		if (reponse != null) {
+			return reponse.getID();
+		}
+		return null;
+	}
 
 	/**
 	 * @param reponse

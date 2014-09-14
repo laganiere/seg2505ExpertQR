@@ -49,7 +49,7 @@ public class UtilisateurControlleur {
 		if (expertise != null
 				&& expertise.getTexte() != null
 				&& !expertise.getTexte().isEmpty()) {
-			listeUtilisateurs = dbFacade.getExpertPourExpertise(expertise);
+			listeUtilisateurs = dbFacade.getExpertPourExpertise(expertise.getTexte());
 		}
 		 
 		return listeUtilisateurs;
