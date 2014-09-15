@@ -107,8 +107,10 @@ public class ParseObjectAdapteur {
 		Question question = toQuestionSansReponse(pObject);
 		
 		Reponse reponse = getReponseSansQuestion(pObject.getString(questionReponseID));
-		reponse.setQuestion(question);
-		question.setReponse(reponse);
+		if (reponse != null) {
+			reponse.setQuestion(question);
+			question.setReponse(reponse);
+		}
 		
 		return question;
 	}
@@ -152,8 +154,10 @@ public class ParseObjectAdapteur {
 		Reponse reponse = toReponseSansQuestion(pObject);
 		
 		Question question = getQuestionSansReponse(pObject.getString(reponseQuestionID));
-		question.setReponse(reponse);
-		reponse.setQuestion(question);
+		if (question != null) {
+			question.setReponse(reponse);
+			reponse.setQuestion(question);
+		}
 		
 		return reponse;
 	}
