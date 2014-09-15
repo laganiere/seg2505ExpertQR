@@ -14,12 +14,19 @@
 
 package ca.uottawa.seg2505.expertqrandroid.parse;
 
+import java.util.List;
+
+import android.util.Log;
+import ca.uottawa.eecs.seg2505.expertqr.model.Expert;
 import ca.uottawa.eecs.seg2505.expertqr.model.Expertise;
 import ca.uottawa.eecs.seg2505.expertqr.model.Question;
+import ca.uottawa.eecs.seg2505.expertqr.model.Questionneur;
 import ca.uottawa.eecs.seg2505.expertqr.model.Reponse;
 import ca.uottawa.eecs.seg2505.expertqr.model.Utilisateur;
 
+import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 /**
@@ -97,22 +104,117 @@ public class ParseObjectAdapteur {
 	}
 	
 	public static Question toQuestion(ParseObject pObject) {
+		Question question = toQuestionSansReponse(pObject);
+		
+		Reponse reponse = getReponseSansQuestion(pObject.getString(questionReponseID));
+		reponse.setQuestion(question);
+		question.setReponse(reponse);
+		
+		return question;
+	}
+	
+	/**
+	 * La methode suivante est pour usage interne. Elle fait le loading d'une
+	 * Question sans faire le loading de sa Reponse pour eviter une loupe infinie.
+	 */
+	private static Question getQuestionSansReponse(String questionID) {
 		Question question = new Question();
+		ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(ParseObjectAdapteur.questionClassName);
+		query.whereEqualTo(ParseObjectAdapteur.questionID, questionID);
+		try {
+			List<ParseObject> resultat = query.find();
+			// adapt to Question
+			if (resultat.size() > 0) {
+				question = ParseObjectAdapteur.toQuestionSansReponse(resultat.get(0));
+			}
+		} catch (ParseException e) {
+			Log.e(ParseObjectAdapteur.erreurTag, e.getMessage());
+		}
+		
+		return question;
+	}
+	
+	private static Question toQuestionSansReponse(ParseObject pObject) {
+		Question question = new Question();
+		
+		Expertise expertise = new Expertise();
+		expertise.setTexte(pObject.getString(questionExpertiseReq));
+		question.setExpertiseRequise(expertise);
+		
+		question.setTexte(pObject.getString(questionTexte));
+		question.setUtilisateurID(pObject.getString(questionUtilisateurID));
+		question.setID(pObject.getString(questionID));
+
 		return question;
 	}
 	
 	public static Reponse toReponse(ParseObject pObject) {
+		Reponse reponse = toReponseSansQuestion(pObject);
+		
+		Question question = getQuestionSansReponse(pObject.getString(reponseQuestionID));
+		question.setReponse(reponse);
+		reponse.setQuestion(question);
+		
+		return reponse;
+	}
+	
+	/**
+	 * La methode suivante est pour usage interne. Elle fait le loading d'une
+	 * Reponse sans faire le loading de sa Question pour eviter une loupe infinie.
+	 */
+	private static Reponse getReponseSansQuestion(String reponseID) {
 		Reponse reponse = new Reponse();
+		ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(ParseObjectAdapteur.reponseClassName);
+		query.whereEqualTo(ParseObjectAdapteur.reponseID, reponseID);
+		try {
+			List<ParseObject> resultat = query.find();
+			// adapt to Question
+			if (resultat.size() > 0) {
+				reponse = ParseObjectAdapteur.toReponseSansQuestion(resultat.get(0));
+			}
+		} catch (ParseException e) {
+			Log.e(ParseObjectAdapteur.erreurTag, e.getMessage());
+		}
+		
+		return reponse;
+	}
+	
+	private static Reponse toReponseSansQuestion(ParseObject pObject) {
+		Reponse reponse = new Reponse();
+		
+		reponse.setEvaluation(pObject.getInt(reponseEvaluation));
+		reponse.setExpertID(pObject.getString(reponseExpertID));
+		reponse.setID(pObject.getString(reponseID));
+		reponse.setTexte(pObject.getString(reponseTexte));
+		
 		return reponse;
 	}
 	
 	public static Expertise toExpertise(ParseObject pObject) {
 		Expertise expertise = new Expertise();
+		expertise.setTexte(pObject.getString(expertiseTexte));
 		return expertise;
 	}
 	
-	public static Utilisateur toUtilisateur(ParseObject pObject) {
+	public static Utilisateur toUtilisateur(ParseUser user) {
 		Utilisateur utilisateur = new Utilisateur();
+		utilisateur.setNom(user.getUsername());
+
+		if (user.getBoolean(utilisateurRoleQuestionneur)) {
+			utilisateur.setRoleQuestionneur(new Questionneur());
+		}
+		if (user.getBoolean(utilisateurRoleExpert)) {
+			Expert expert = new Expert();
+			
+			Expertise expertise = new Expertise();
+			expertise.setTexte(user.getString(utilisateurRoleExpertExpertise));
+			expert.setExpertise(expertise);
+			
+			expert.setCote(user.getDouble(utilisateurRoleExpertCote));
+			
+			utilisateur.setRoleExpert(expert);
+		}
+		
 		return utilisateur;
 	}
 }
