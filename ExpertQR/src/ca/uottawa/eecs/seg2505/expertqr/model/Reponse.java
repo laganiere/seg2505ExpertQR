@@ -52,6 +52,10 @@ public class Reponse implements Serializable {
 		return this.ID;
 	}
 	
+	public void setID(String ID) {
+		this.ID = ID;
+	}
+	
 	/**
 	 * @return
 	 */
