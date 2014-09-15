@@ -70,12 +70,6 @@ public class Test {
 			System.out.println("Erreur: question pour utilisateur non existante");
 		}
 		
-		// teste pour obtenir une liste d'expert pour une expertise
-		List<Utilisateur> utiPourExp = Delegateur.getExpertPourExpertise(expertise);
-		if (!utiPourExp.contains(expert)) {
-			System.out.println("Erreur: Expert pour expertise non existant");
-		}
-		
 		// L'expert repond a la question
 		Reponse reponse = new Reponse();
 		reponse.setTexte("C'est Hanna");

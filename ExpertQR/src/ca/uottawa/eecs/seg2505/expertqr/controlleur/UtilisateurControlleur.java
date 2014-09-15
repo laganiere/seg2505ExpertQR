@@ -13,10 +13,7 @@
  */
 package ca.uottawa.eecs.seg2505.expertqr.controlleur;
 
-import java.util.List;
-
 import ca.uottawa.eecs.seg2505.expertqr.db.DBFacade;
-import ca.uottawa.eecs.seg2505.expertqr.model.Expertise;
 import ca.uottawa.eecs.seg2505.expertqr.model.Utilisateur;
 
 /**
@@ -41,17 +38,5 @@ public class UtilisateurControlleur {
 				&& !utilisateur.getNom().isEmpty()) {
 			dbFacade.sauvegardeUtilisateur(utilisateur);
 		}
-	}
-	
-	public List<Utilisateur> getExpertPourExpertise(Expertise expertise) {
-		List<Utilisateur> listeUtilisateurs = null;
-		
-		if (expertise != null
-				&& expertise.getTexte() != null
-				&& !expertise.getTexte().isEmpty()) {
-			listeUtilisateurs = dbFacade.getExpertPourExpertise(expertise.getTexte());
-		}
-		 
-		return listeUtilisateurs;
 	}
 }

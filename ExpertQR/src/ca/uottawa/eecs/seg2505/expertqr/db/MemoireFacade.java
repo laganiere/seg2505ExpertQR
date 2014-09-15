@@ -55,20 +55,6 @@ public class MemoireFacade extends DBFacade {
 		}
 		return null;
 	}
-	
-
-	@Override
-	public List<Utilisateur> getExpertPourExpertise(String expertise) {
-		List<Utilisateur> resultat = new ArrayList<Utilisateur>();
-		for (Utilisateur uti : utilisateurs) {
-			if (uti.getRoleExpert() != null
-					&& uti.getRoleExpert().getExpertise() != null
-					&& uti.getRoleExpert().getExpertise().equals(expertise)) {
-				resultat.add(uti);
-			}
-		}
-		return resultat;
-	}
 
 	@Override
 	public void sauvegardeQuestion(Question question) {
