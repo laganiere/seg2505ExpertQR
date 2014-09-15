@@ -14,6 +14,7 @@
 
 package ca.uottawa.seg2505.expertqrandroid.parse;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.util.Log;
@@ -25,6 +26,7 @@ import ca.uottawa.eecs.seg2505.expertqr.model.Utilisateur;
 
 import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 /**
@@ -33,34 +35,6 @@ import com.parse.ParseUser;
  */
 public class ParseFacade extends DBFacade {
 	
-	// Pour la classe Question
-	public String questionClassName = "Question";
-	public String questionID = "ID";
-	public String questionExpertiseReq = "ExpertiseReq";
-	public String questionTexte= "Texte";
-	public String questionReponseID = "ReponseID";
-	public String questionUtilisateurID = "UtilisateurID";
-	
-	// Pour la classe Reponse
-	public String reponseClassName = "Reponse";
-	public String reponseID = "ID";
-	public String reponseExpertID = "ExpertID";
-	public String reponseQuestionID = "QuestionID";
-	public String reponseEvaluation = "Evaluation";
-	public String reponseTexte = "Texte";
-	
-	// Pour la classe Expertise
-	public String expertiseClassName = "Expertise";
-	public String expertiseTexte = "Texte";
-	
-	// Pour la classe Utilisateur
-	public String utilisateurRoleExpert = "RoleExpert";
-	public String utilisateurRoleExpertCote = "RoleExpertCote";
-	public String utilisateurRoleExpertExpertise = "RoleExpertExpertise";
-	public String utilisateurRoleQuestionneur = "RoleQuestionneur";
-	
-	public String erreurTag = "ParseFacade";
-
 	/**
 	 * 
 	 */
@@ -72,17 +46,51 @@ public class ParseFacade extends DBFacade {
 	 */
 	@Override
 	public List<Question> getQuestionsPourExpertise(String expertise) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Question> listeQuestions = new ArrayList<Question>();
+		
+		if (expertise != null
+				&& !expertise.isEmpty()) {
+			ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(ParseObjectAdapteur.questionClassName);
+			query.whereEqualTo(ParseObjectAdapteur.questionExpertiseReq, expertise);
+			try {
+				List<ParseObject> resultat = query.find();
+				// adapt to Question
+				for (ParseObject parseObject : resultat) {
+					listeQuestions.add(ParseObjectAdapteur.toQuestion(parseObject));
+				}
+				
+			} catch (ParseException e) {
+				Log.e(ParseObjectAdapteur.erreurTag, e.getMessage());
+			}
+		}
+		 
+		return listeQuestions;
 	}
 
 	/* (non-Javadoc)
 	 * @see ca.uottawa.eecs.seg2505.expertqr.db.DBFacade#getQuestionsPourUtilisateur(java.lang.String)
 	 */
 	@Override
-	public List<Question> getQuestionsPourUtilisateur(String userID) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Question> getQuestionsPourUtilisateur(String nom) {
+		List<Question> listeQuestions = new ArrayList<Question>();
+		
+		if (nom != null
+				&& !nom.isEmpty()) {
+			ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(ParseObjectAdapteur.questionClassName);
+			query.whereEqualTo(ParseObjectAdapteur.questionUtilisateurID, nom);
+			try {
+				List<ParseObject> resultat = query.find();
+				// adapt to Question
+				for (ParseObject parseObject : resultat) {
+					listeQuestions.add(ParseObjectAdapteur.toQuestion(parseObject));
+				}
+				
+			} catch (ParseException e) {
+				Log.e(ParseObjectAdapteur.erreurTag, e.getMessage());
+			}
+		}
+		 
+		return listeQuestions;
 	}
 
 	/* (non-Javadoc)
@@ -90,17 +98,24 @@ public class ParseFacade extends DBFacade {
 	 */
 	@Override
 	public Reponse getReponsePourQuestion(String questionID) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/* (non-Javadoc)
-	 * @see ca.uottawa.eecs.seg2505.expertqr.db.DBFacade#getExpertPourExpertise(ca.uottawa.eecs.seg2505.expertqr.model.Expertise)
-	 */
-	@Override
-	public List<Utilisateur> getExpertPourExpertise(String expertise) {
-		// TODO Auto-generated method stub
-		return null;
+		Reponse reponse = null;
+		
+		if (questionID != null
+				&& !questionID.isEmpty()) {
+			ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(ParseObjectAdapteur.reponseClassName);
+			query.whereEqualTo(ParseObjectAdapteur.reponseQuestionID, questionID);
+			try {
+				List<ParseObject> resultat = query.find();
+				// adapt to Reponse
+				if (resultat.size() > 0) {
+					reponse = ParseObjectAdapteur.toReponse(resultat.get(0));
+				}
+			} catch (ParseException e) {
+				Log.e(ParseObjectAdapteur.erreurTag, e.getMessage());
+			}
+		}
+		 
+		return reponse;
 	}
 
 	/* (non-Javadoc)
@@ -108,16 +123,12 @@ public class ParseFacade extends DBFacade {
 	 */
 	@Override
 	public void sauvegardeQuestion(Question question) {
-		ParseObject o = new ParseObject(questionClassName);
-		o.put(questionExpertiseReq, question.getExpertiseRequise());
-		o.put(questionID, question.getID());
-		o.put(questionReponseID, question.getReponseID());
-		o.put(questionTexte, question.getTexte());
-		o.put(questionUtilisateurID, question.getUtilisateurID());
+		ParseObject o = ParseObjectAdapteur.from(question);
+		
 		try {
 			o.save();
 		} catch (ParseException e) {
-			Log.e(erreurTag, e.getMessage());
+			Log.e(ParseObjectAdapteur.erreurTag, e.getMessage());
 		}
 	}
 
@@ -126,16 +137,12 @@ public class ParseFacade extends DBFacade {
 	 */
 	@Override
 	public void sauvegardeReponse(Reponse reponse) {
-		ParseObject o = new ParseObject(reponseClassName);
-		o.put(reponseEvaluation, reponse.getEvaluation());
-		o.put(reponseExpertID, reponse.getExpertID());
-		o.put(reponseID, reponse.getID());
-		o.put(reponseQuestionID, reponse.getQuestionID());
-		o.put(reponseTexte, reponse.getTexte());
+		ParseObject o = ParseObjectAdapteur.from(reponse);
+		
 		try {
 			o.save();
 		} catch (ParseException e) {
-			Log.e(erreurTag, e.getMessage());
+			Log.e(ParseObjectAdapteur.erreurTag, e.getMessage());
 		}
 	}
 
@@ -144,21 +151,12 @@ public class ParseFacade extends DBFacade {
 	 */
 	@Override
 	public void sauvegardeUtilisateur(Utilisateur utilisateur) {
-		ParseUser user = new ParseUser();
-		user.setUsername(utilisateur.getNom());
-		if (utilisateur.getRoleQuestionneur() != null) {
-			user.put(utilisateurRoleQuestionneur, true);
-		}
-		if (utilisateur.getRoleExpert() != null) {
-			user.put(utilisateurRoleExpert, true);
-			user.put(utilisateurRoleExpertExpertise, utilisateur.getRoleExpert().getExpertise());
-			user.put(utilisateurRoleExpertCote, utilisateur.getRoleExpert().getCote());
-		}
+		ParseUser user = ParseObjectAdapteur.from(utilisateur);
 		
 		try {
 			user.save();
 		} catch (ParseException e) {
-			Log.e(erreurTag, e.getMessage());
+			Log.e(ParseObjectAdapteur.erreurTag, e.getMessage());
 		};
 	}
 
@@ -167,12 +165,12 @@ public class ParseFacade extends DBFacade {
 	 */
 	@Override
 	public void sauvegardeExpertise(Expertise expertise) {
-		ParseObject o = new ParseObject(expertiseClassName);
-		o.put(expertiseTexte, expertise.getTexte());
+		ParseObject o = ParseObjectAdapteur.from(expertise);
+		
 		try {
 			o.save();
 		} catch (ParseException e) {
-			Log.e(erreurTag, e.getMessage());
+			Log.e(ParseObjectAdapteur.erreurTag, e.getMessage());
 		}
 	}
 
