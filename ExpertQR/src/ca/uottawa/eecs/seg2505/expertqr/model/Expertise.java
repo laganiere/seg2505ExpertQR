@@ -44,4 +44,13 @@ public class Expertise implements Serializable {
 	public void setTexte(String texte) {
 		this.texte = texte;
 	}
+	
+	@Override
+	public String toString() {
+		String s = getTexte();
+		if (s == null) {
+			s = Constantes.STRING_VIDE;
+		}
+		return s;
+	}
 }

@@ -13,6 +13,8 @@
  */
 package ca.uottawa.eecs.seg2505.expertqr.controlleur;
 
+import java.util.List;
+
 import ca.uottawa.eecs.seg2505.expertqr.db.DBFacade;
 import ca.uottawa.eecs.seg2505.expertqr.model.Expertise;
 
@@ -38,5 +40,9 @@ public class ExpertiseControlleur {
 				&& !expertise.getTexte().isEmpty()) {
 			dbFacade.sauvegardeExpertise(expertise);
 		}
+	}
+
+	public List<Expertise> getListeExpertises() {
+		return dbFacade.getListeExpertises();
 	}
 }

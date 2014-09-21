@@ -56,6 +56,10 @@ public class Delegateur {
 		return reponseControlleur.getReponsePourQuestion(question);
 	}
 	
+	public static List<Expertise> getListeExpertises() {
+		 return expertiseControlleur.getListeExpertises();
+	}
+	
 	/**
 	 * Méthode pour sauvegarder une Question
 	 * @param question

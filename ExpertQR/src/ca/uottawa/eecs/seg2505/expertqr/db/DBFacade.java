@@ -45,6 +45,11 @@ public abstract class DBFacade {
 	public abstract Reponse getReponsePourQuestion(String questionID);
 	
 	/**
+	 * @return
+	 */
+	public abstract List<Expertise> getListeExpertises();
+	
+	/**
 	 * Méthode pour sauvegarder une Question
 	 * @param question
 	 */

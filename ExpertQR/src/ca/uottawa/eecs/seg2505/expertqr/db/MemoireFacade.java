@@ -55,6 +55,11 @@ public class MemoireFacade extends DBFacade {
 		}
 		return null;
 	}
+	
+	@Override
+	public List<Expertise> getListeExpertises() {
+		return expertises;
+	}
 
 	@Override
 	public void sauvegardeQuestion(Question question) {
