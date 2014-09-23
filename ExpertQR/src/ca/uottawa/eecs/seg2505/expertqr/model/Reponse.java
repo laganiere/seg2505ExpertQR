@@ -109,7 +109,7 @@ public class Reponse implements Serializable {
 		if (question != null) {
 			return question.getID();
 		}
-		return null;
+		return Constantes.STRING_VIDE;
 	}
 
 	/**
@@ -117,5 +117,10 @@ public class Reponse implements Serializable {
 	 */
 	public void setQuestion(Question question) {
 		this.question = question;
+	}
+	
+	@Override
+	public String toString() {
+		return getTexte();
 	}
 }

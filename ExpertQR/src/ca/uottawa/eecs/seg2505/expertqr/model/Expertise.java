@@ -53,4 +53,14 @@ public class Expertise implements Serializable {
 		}
 		return s;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Expertise) {
+			if (getTexte() != null) {
+				return getTexte().equals(((Expertise)obj).getTexte());
+			}
+		}
+		return false;
+	}
 }
