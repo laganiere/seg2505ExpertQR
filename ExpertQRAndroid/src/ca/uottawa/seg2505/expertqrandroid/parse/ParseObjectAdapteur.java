@@ -65,7 +65,7 @@ public class ParseObjectAdapteur {
 		
 	public static ParseObject from(Question question) {
 		ParseObject o = new ParseObject(questionClassName);
-		o.put(questionExpertiseReq, question.getExpertiseRequise());
+		o.put(questionExpertiseReq, question.getExpertiseRequise().getTexte());
 		o.put(questionID, question.getID());
 		o.put(questionReponseID, question.getReponseID());
 		o.put(questionTexte, question.getTexte());
@@ -90,14 +90,18 @@ public class ParseObjectAdapteur {
 	}
 	
 	public static ParseUser from(Utilisateur utilisateur) {
-		ParseUser user = new ParseUser();
-		user.setUsername(utilisateur.getNom());
+		ParseUser user = ParseFacade.getParseUser(utilisateur.getNom());
+		if (user == null) {
+			user = new ParseUser();
+			user.setUsername(utilisateur.getNom());
+		}
+		
 		if (utilisateur.getRoleQuestionneur() != null) {
 			user.put(utilisateurRoleQuestionneur, true);
 		}
 		if (utilisateur.getRoleExpert() != null) {
 			user.put(utilisateurRoleExpert, true);
-			user.put(utilisateurRoleExpertExpertise, utilisateur.getRoleExpert().getExpertise());
+			user.put(utilisateurRoleExpertExpertise, utilisateur.getRoleExpert().getExpertise().getTexte());
 			user.put(utilisateurRoleExpertCote, utilisateur.getRoleExpert().getCote());
 		}
 		return user;

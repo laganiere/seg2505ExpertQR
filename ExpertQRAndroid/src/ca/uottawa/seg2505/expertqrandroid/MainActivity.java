@@ -1,16 +1,24 @@
 package ca.uottawa.seg2505.expertqrandroid;
 
-import android.support.v7.app.ActionBarActivity;
+import com.parse.ui.ParseLoginBuilder;
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class MainActivity extends ActionBarActivity {
+	
+	private int loginRequestCode = 123;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		enableUI(true);
 	}
 
 	@Override
@@ -30,5 +38,49 @@ public class MainActivity extends ActionBarActivity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	@Override
+    protected void onActivityResult(int arg0, int arg1, Intent arg2) {
+    	super.onActivityResult(arg0, arg1, arg2);
+    	
+    	if (arg0 == loginRequestCode
+    			&& arg1 == RESULT_OK) {
+    		// succes du login
+    		enableUI(true);
+    		findViewById(R.id.buttonLogin).setEnabled(false);
+    	}
+    }
+    
+    private void enableUI(boolean b) {
+    	findViewById(R.id.buttonChoisirExpertises).setEnabled(b);
+    	findViewById(R.id.buttonPoserQuestion).setEnabled(b);
+		findViewById(R.id.buttonRepondreQuestion).setEnabled(b);
+		findViewById(R.id.buttonLireEvaluerReponse).setEnabled(b);
+	}
+
+	public void onLogin(View view) {
+    	ParseLoginBuilder builder = new ParseLoginBuilder(MainActivity.this);
+    	startActivityForResult(builder.build(), loginRequestCode);
+	}
+	
+	public void onChoisirExpertises(View view) {
+		Intent intent = new Intent(this, ExpertiseActivity.class);
+		startActivity(intent);
+	}
+	
+    public void onPoserQuestion(View view) {
+    	Intent intent = new Intent(this, PoserQuestionActivity.class);
+		startActivity(intent);
+	}
+	
+	public void onRepondreQuestion(View view) {
+		Intent intent = new Intent(this, RepondreQuestionActivity.class);
+		startActivity(intent);
+	}
+	
+	public void OnLireEvaluerReponse(View view) {
+		Intent intent = new Intent(this, LireEvaluerActivity.class);
+		startActivity(intent);
 	}
 }

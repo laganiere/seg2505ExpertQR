@@ -1,27 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ca.uottawa.seg2505.expertqrandroid"
-    android:versionCode="1"
-    android:versionName="1.0" >
+    <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="ca.uottawa.seg2505.expertqrandroid" android:versionCode="1" android:versionName="1.0">
 
-    <uses-sdk
-        android:minSdkVersion="9"
-        android:targetSdkVersion="19" />
+    <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="19" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
-    <application
-        android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name" >
+    <application android:allowBackup="true" android:icon="@drawable/ic_launcher" android:label="@string/app_name" android:theme="@style/AppTheme" android:name="Main">
+        <activity android:name=".MainActivity" android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".PoserQuestionActivity" android:label="@string/title_activity_poser_question">
+        </activity>
+        <activity android:name=".RepondreQuestionActivity" android:label="@string/title_activity_repondre_question">
+        </activity>
+        <activity android:name=".LireEvaluerActivity" android:label="@string/title_activity_lire_evaluer">
+        </activity>
+        <activity android:name=".ExpertiseActivity" android:label="@string/title_activity_expertise">
+        </activity>
+        
+        <activity
+    android:name="com.parse.ui.ParseLoginActivity"
+    android:label="@string/app_name"
+    android:launchMode="singleTop">
+    <meta-data
+        android:name="com.parse.ui.ParseLoginActivity.PARSE_LOGIN_ENABLED"
+        android:value="true"/>
+	</activity>
+
     </application>
 
 </manifest>

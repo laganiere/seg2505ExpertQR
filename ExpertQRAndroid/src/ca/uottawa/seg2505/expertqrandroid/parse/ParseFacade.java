@@ -117,6 +117,25 @@ public class ParseFacade extends DBFacade {
 		 
 		return reponse;
 	}
+	
+	/* (non-Javadoc)
+	 * @see ca.uottawa.eecs.seg2505.expertqr.db.DBFacade#getListeExpertises()
+	 */
+	@Override
+	public List<Expertise> getListeExpertises() {
+		ArrayList<Expertise> expertises = new ArrayList<Expertise>();
+		ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(ParseObjectAdapteur.expertiseClassName);
+		try {
+			List<ParseObject> resultat = query.find();
+			// adapt to Expertise
+			for (ParseObject parseObject : resultat) {
+				expertises.add(ParseObjectAdapteur.toExpertise(parseObject));
+			}
+		} catch (ParseException e) {
+			Log.e(ParseObjectAdapteur.erreurTag, e.getMessage());
+		}
+		return expertises;
+	}
 
 	/* (non-Javadoc)
 	 * @see ca.uottawa.eecs.seg2505.expertqr.db.DBFacade#sauvegardeQuestion(ca.uottawa.eecs.seg2505.expertqr.model.Question)
@@ -172,6 +191,22 @@ public class ParseFacade extends DBFacade {
 		} catch (ParseException e) {
 			Log.e(ParseObjectAdapteur.erreurTag, e.getMessage());
 		}
+	}
+	
+	public static ParseUser getParseUser(String nom) {
+		ParseUser user = null;
+		ParseQuery<ParseUser> query = ParseUser.getQuery();
+		query.whereEqualTo("username", nom);
+		
+		try {
+			List<ParseUser> list = query.find();
+			if (list.size() > 0) {
+				user = list.get(0);
+			}
+		} catch (ParseException e) {
+		}
+		
+		return user;
 	}
 
 }
