@@ -21,7 +21,6 @@ import ca.uottawa.eecs.seg2505.expertqr.db.MemoireFacade;
 import ca.uottawa.eecs.seg2505.expertqr.model.Expert;
 import ca.uottawa.eecs.seg2505.expertqr.model.Expertise;
 import ca.uottawa.eecs.seg2505.expertqr.model.Question;
-import ca.uottawa.eecs.seg2505.expertqr.model.Questionneur;
 import ca.uottawa.eecs.seg2505.expertqr.model.Reponse;
 import ca.uottawa.eecs.seg2505.expertqr.model.Utilisateur;
 
@@ -40,7 +39,6 @@ public class Test {
 		
 		Utilisateur utilisateur = new Utilisateur();
 		utilisateur.setNom("Hanna");
-		utilisateur.setRoleQuestionneur(new Questionneur());
 		
 		Question question = new Question();
 		question.setTexte("C'est quoi ton nom?");

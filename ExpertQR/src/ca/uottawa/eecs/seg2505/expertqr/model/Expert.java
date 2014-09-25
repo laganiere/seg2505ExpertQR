@@ -19,7 +19,7 @@ import java.io.Serializable;
  * @author Hanna
  *
  */
-public class Expert extends UtilisateurRole implements Serializable {
+public class Expert implements Serializable {
 	
 	private static final long serialVersionUID = 5736373841598132425L;
 	/**

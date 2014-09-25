@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class-diagram version="1.1.6" icons="true" automaticImage="JPEG" always-add-relationships="false" 
-  generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
+<class-diagram version="1.1.6" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true">  
   <class id="1" language="java" name="ca.uottawa.eecs.seg2505.expertqr.model.Expertise" project="ExpertQR" 
     file="/ExpertQR/src/ca/uottawa/eecs/seg2505/expertqr/model/Expertise.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="173" y="704"/>    
@@ -10,16 +10,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="ca.uottawa.eecs.seg2505.expertqr.model.Questionneur" project="ExpertQR" 
-    file="/ExpertQR/src/ca/uottawa/eecs/seg2505/expertqr/model/Questionneur.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="411" y="243"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
-      visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="3" language="java" name="ca.uottawa.eecs.seg2505.expertqr.model.Expert" project="ExpertQR" 
+  <class id="2" language="java" name="ca.uottawa.eecs.seg2505.expertqr.model.Expert" project="ExpertQR" 
     file="/ExpertQR/src/ca/uottawa/eecs/seg2505/expertqr/model/Expert.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="172" y="287"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -28,17 +19,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="ca.uottawa.eecs.seg2505.expertqr.model.UtilisateurRole" project="ExpertQR" 
-    file="/ExpertQR/src/ca/uottawa/eecs/seg2505/expertqr/model/UtilisateurRole.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="291" y="77"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
-      visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="5" language="java" name="ca.uottawa.eecs.seg2505.expertqr.model.Question" project="ExpertQR" 
+  <class id="3" language="java" name="ca.uottawa.eecs.seg2505.expertqr.model.Question" project="ExpertQR" 
     file="/ExpertQR/src/ca/uottawa/eecs/seg2505/expertqr/model/Question.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="461" y="707"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -47,7 +28,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="ca.uottawa.eecs.seg2505.expertqr.model.Reponse" project="ExpertQR" 
+  <class id="4" language="java" name="ca.uottawa.eecs.seg2505.expertqr.model.Reponse" project="ExpertQR" 
     file="/ExpertQR/src/ca/uottawa/eecs/seg2505/expertqr/model/Reponse.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="794" y="702"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -56,71 +37,55 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="ca.uottawa.eecs.seg2505.expertqr.model.Utilisateur" project="ExpertQR" 
+  <class id="5" language="java" name="ca.uottawa.eecs.seg2505.expertqr.model.Utilisateur" project="ExpertQR" 
     file="/ExpertQR/src/ca/uottawa/eecs/seg2505/expertqr/model/Utilisateur.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="774" y="389"/>    
+    <position height="-1" width="-1" x="770" y="284"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="8">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="9" name="roleQuestionneur"/>      
-      <multiplicity id="10" minimum="0" maximum="1"/>    
+  <association id="6">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="7" name="expertise"/>      
+      <multiplicity id="8" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="9">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="10" name="roleExpert"/>      
+      <multiplicity id="11" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="11">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="12" name="question"/>      
-      <multiplicity id="13" minimum="0" maximum="1"/>    
+  <association id="12">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="13" name="reponse"/>      
+      <multiplicity id="14" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
+    <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="14">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
   <association id="15">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="16" name="roleExpert"/>      
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="16" name="expertiseRequise"/>      
       <multiplicity id="17" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="18">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="19" name="question"/>      
+      <multiplicity id="20" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="18">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="19" name="reponse"/>      
-      <multiplicity id="20" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="21">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="22" name="expertise"/>      
-      <multiplicity id="23" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="24">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="25" name="expertiseRequise"/>      
-      <multiplicity id="26" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="27">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

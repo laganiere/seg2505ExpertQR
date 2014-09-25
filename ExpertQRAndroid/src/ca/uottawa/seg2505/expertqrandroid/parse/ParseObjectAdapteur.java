@@ -20,7 +20,6 @@ import android.util.Log;
 import ca.uottawa.eecs.seg2505.expertqr.model.Expert;
 import ca.uottawa.eecs.seg2505.expertqr.model.Expertise;
 import ca.uottawa.eecs.seg2505.expertqr.model.Question;
-import ca.uottawa.eecs.seg2505.expertqr.model.Questionneur;
 import ca.uottawa.eecs.seg2505.expertqr.model.Reponse;
 import ca.uottawa.eecs.seg2505.expertqr.model.Utilisateur;
 
@@ -96,9 +95,6 @@ public class ParseObjectAdapteur {
 			user.setUsername(utilisateur.getNom());
 		}
 		
-		if (utilisateur.getRoleQuestionneur() != null) {
-			user.put(utilisateurRoleQuestionneur, true);
-		}
 		if (utilisateur.getRoleExpert() != null) {
 			user.put(utilisateurRoleExpert, true);
 			user.put(utilisateurRoleExpertExpertise, utilisateur.getRoleExpert().getExpertise().getTexte());
@@ -208,9 +204,6 @@ public class ParseObjectAdapteur {
 		Utilisateur utilisateur = new Utilisateur();
 		utilisateur.setNom(user.getUsername());
 
-		if (user.getBoolean(utilisateurRoleQuestionneur)) {
-			utilisateur.setRoleQuestionneur(new Questionneur());
-		}
 		if (user.getBoolean(utilisateurRoleExpert)) {
 			Expert expert = new Expert();
 			

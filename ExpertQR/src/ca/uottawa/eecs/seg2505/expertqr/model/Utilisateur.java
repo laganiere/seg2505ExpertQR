@@ -28,10 +28,7 @@ public class Utilisateur implements Serializable {
 	 * le nom de l'utilisateur est unique
 	 */
 	protected String nom = Constantes.STRING_VIDE;
-	// les roles que l'utilisateur peut jouer
-	/**
-	 */
-	protected Questionneur roleQuestionneur = null;
+	// le role que l'utilisateur peut jouer
 	/**
 	 */
 	protected Expert roleExpert = null;
@@ -51,20 +48,6 @@ public class Utilisateur implements Serializable {
 	 */
 	public void setNom(String nom) {
 		this.nom = nom;
-	}
-
-	/**
-	 * @return
-	 */
-	public Questionneur getRoleQuestionneur() {
-		return roleQuestionneur;
-	}
-
-	/**
-	 * @param roleQuestionneur
-	 */
-	public void setRoleQuestionneur(Questionneur roleQuestionneur) {
-		this.roleQuestionneur = roleQuestionneur;
 	}
 
 	/**
