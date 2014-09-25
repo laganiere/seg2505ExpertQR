@@ -58,7 +58,6 @@ public class ParseObjectAdapteur {
 	public static String utilisateurRoleExpert = "RoleExpert";
 	public static String utilisateurRoleExpertCote = "RoleExpertCote";
 	public static String utilisateurRoleExpertExpertise = "RoleExpertExpertise";
-	public static String utilisateurRoleQuestionneur = "RoleQuestionneur";
 	
 	public static String erreurTag = "ParseFacade";
 		
