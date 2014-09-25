@@ -10,7 +10,7 @@
     <string name="button_RepondreQuestion">Repondre a une question</string>
     <string name="button_LireEvaluer">Lire et evaluer une reponse</string>
     <string name="button_Expert">Je suis un expert</string>
-    <string name="button_ChoisirExpertises">Choisir mes expertises</string>
+    <string name="button_ChoisirExpertises">Choisir mon expertise</string>
     <string name="button_NonExpert">Je ne suis pas un expert</string>
     <string name="button_Ok">Ok</string>
     <string name="button_Cancel">Cancel</string>
@@ -29,5 +29,6 @@
     <string name="label_pas_de_question">Aucune question pour ton expertise!</string>
     <string name="label_pas_de_reponse">*Pas de reponse pour le moment*</string>
     <string name="label_erreur_evaluation_numerique">L\'evaluation doit etre une valeur numerique entiere.</string>
+    <string name="label_pour_expert">Section Expert</string>
 
 </resources>

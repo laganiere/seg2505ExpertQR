@@ -194,7 +194,14 @@ public class ParseFacade extends DBFacade {
 	}
 	
 	public static ParseUser getParseUser(String nom) {
-		ParseUser user = null;
+		ParseUser user = ParseUser.getCurrentUser();
+		
+		if (user != null) {
+			if (user.getUsername().equals(nom)) {
+				return user;
+			}
+		}
+		
 		ParseQuery<ParseUser> query = ParseUser.getQuery();
 		query.whereEqualTo("username", nom);
 		
