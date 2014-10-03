@@ -8,7 +8,7 @@ import ca.uottawa.eecs.seg2505.expertqr.model.Question;
 import ca.uottawa.eecs.seg2505.expertqr.model.Reponse;
 import ca.uottawa.eecs.seg2505.expertqr.model.Utilisateur;
 
-public class MemoireFacade extends DBFacade {
+public class MemoireFacade implements DBFacade {
 
 	// garder tous les donnees en memoire
 	protected List<Question> questions = new ArrayList<Question>();

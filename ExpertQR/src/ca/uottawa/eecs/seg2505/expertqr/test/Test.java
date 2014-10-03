@@ -17,6 +17,7 @@ package ca.uottawa.eecs.seg2505.expertqr.test;
 import java.util.List;
 
 import ca.uottawa.eecs.seg2505.expertqr.Delegateur;
+import ca.uottawa.eecs.seg2505.expertqr.db.DBFacade;
 import ca.uottawa.eecs.seg2505.expertqr.db.MemoireFacade;
 import ca.uottawa.eecs.seg2505.expertqr.model.Expert;
 import ca.uottawa.eecs.seg2505.expertqr.model.Expertise;
@@ -31,7 +32,7 @@ import ca.uottawa.eecs.seg2505.expertqr.model.Utilisateur;
 public class Test {
 
 	public static void main(String[] args) {
-		MemoireFacade localDB = new MemoireFacade();
+		DBFacade localDB = new MemoireFacade();
 		Delegateur.setDBFacade(localDB);
 		
 		Expertise expertise = new Expertise();

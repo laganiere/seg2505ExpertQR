@@ -33,7 +33,7 @@ import com.parse.ParseUser;
  * @author Hanna
  *
  */
-public class ParseFacade extends DBFacade {
+public class ParseFacade implements DBFacade {
 	
 	/**
 	 * 

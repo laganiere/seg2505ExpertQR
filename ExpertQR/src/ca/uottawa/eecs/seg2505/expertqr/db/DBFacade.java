@@ -24,52 +24,52 @@ import ca.uottawa.eecs.seg2505.expertqr.model.Utilisateur;
  * @author Hanna
  *
  */
-public abstract class DBFacade {
+public interface DBFacade {
 
 	/**
 	 * @param expertise L'expertise associée à une question
 	 * @return Une liste de questions qui nécessitent l'expertise dans le paramètre
 	 */
-	public abstract List<Question> getQuestionsPourExpertise(String expertise);
+	public List<Question> getQuestionsPourExpertise(String expertise);
 	
 	/**
 	 * @param nom
 	 * @return
 	 */
-	public abstract List<Question> getQuestionsPourUtilisateur(String nom);
+	public List<Question> getQuestionsPourUtilisateur(String nom);
 	
 	/**
 	 * @param questionID
 	 * @return
 	 */
-	public abstract Reponse getReponsePourQuestion(String questionID);
+	public Reponse getReponsePourQuestion(String questionID);
 	
 	/**
 	 * @return
 	 */
-	public abstract List<Expertise> getListeExpertises();
+	public List<Expertise> getListeExpertises();
 	
 	/**
 	 * Méthode pour sauvegarder une Question
 	 * @param question
 	 */
-	public abstract void sauvegardeQuestion(Question question);
+	public void sauvegardeQuestion(Question question);
 	
 	/**
 	 * Méthode pour sauvegarder une Reponse
 	 * @param reponse
 	 */
-	public abstract void sauvegardeReponse(Reponse reponse);
+	public void sauvegardeReponse(Reponse reponse);
 	
 	/**
 	 * Méthode pour sauvegarder un Utilisateur
 	 * @param utilisateur
 	 */
-	public abstract void sauvegardeUtilisateur(Utilisateur utilisateur);
+	public void sauvegardeUtilisateur(Utilisateur utilisateur);
 	
 	/**
 	 * Méthode pour sauvegarder une Expertise
 	 * @param expertise
 	 */
-	public abstract void sauvegardeExpertise(Expertise expertise);
+	public void sauvegardeExpertise(Expertise expertise);
 }
