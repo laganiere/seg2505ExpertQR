@@ -15,6 +15,8 @@
 package ca.uottawa.eecs.seg2505.expertqr;
 
 /**
+ * Classe pour garder certaines constantes du systeme
+ * 
  * @author Hanna
  *
  */

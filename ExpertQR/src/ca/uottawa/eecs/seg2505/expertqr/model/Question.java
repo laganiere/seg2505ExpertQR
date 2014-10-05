@@ -26,18 +26,23 @@ public class Question implements Serializable {
 	
 	private static final long serialVersionUID = -2502857776137042033L;
 	/**
+	 * le ID unique de la question
 	 */
 	protected String ID = Constantes.STRING_VIDE;
 	/**
+	 * Le texte de la question
 	 */
 	protected String texte = Constantes.STRING_VIDE;
 	/**
+	 * L'expertise requise pour repondre a la question
 	 */
 	protected Expertise expertiseRequise = null;
 	/**
+	 * Le ID de l'utilisateur qui a demande la question
 	 */
 	protected String utilisateurID = Constantes.STRING_VIDE;
 	/**
+	 * La reponse a la question
 	 */
 	protected Reponse reponse = null;
 	
@@ -46,67 +51,70 @@ public class Question implements Serializable {
 	}
 	
 	/**
-	 * @return
+	 * @return le ID de la question
 	 */
 	public String getID() {
 		return this.ID;
 	}
 	
+	/**
+	 * @param ID le ID de la question
+	 */
 	public void setID(String ID) {
 		this.ID = ID;
 	}
 	
 	/**
-	 * @return
+	 * @return le texte de la question
 	 */
 	public String getTexte() {
 		return texte;
 	}
 	
 	/**
-	 * @param texte
+	 * @param texte le texte de la question
 	 */
 	public void setTexte(String texte) {
 		this.texte = texte;
 	}
 	
 	/**
-	 * @return
+	 * @return L'expertise requise pour repondre a la question
 	 */
 	public Expertise getExpertiseRequise() {
 		return expertiseRequise;
 	}
 	
 	/**
-	 * @param expertise
+	 * @param expertise L'expertise requise pour repondre a la question
 	 */
 	public void setExpertiseRequise(Expertise expertise) {
 		this.expertiseRequise = expertise;
 	}
 	
 	/**
-	 * @return
+	 * @return Le ID de l'utilisateur qui a demande la question
 	 */
 	public String getUtilisateurID() {
 		return utilisateurID;
 	}
 	
 	/**
-	 * @param utilisateurID
+	 * @param utilisateurID Le ID de l'utilisateur qui a demande la question
 	 */
 	public void setUtilisateurID(String utilisateurID) {
 		this.utilisateurID = utilisateurID;
 	}
 
 	/**
-	 * @return
+	 * @return La reponse a la question
 	 */
 	public Reponse getReponse() {
 		return reponse;
 	}
 	
 	/**
-	 * @return
+	 * @return Le ID de la reponse a la question
 	 */
 	public String getReponseID() {
 		if (reponse != null) {
@@ -116,7 +124,7 @@ public class Question implements Serializable {
 	}
 
 	/**
-	 * @param reponse
+	 * @param reponse La reponse a la question
 	 */
 	public void setReponse(Reponse reponse) {
 		this.reponse = reponse;
@@ -124,6 +132,7 @@ public class Question implements Serializable {
 	
 	@Override
 	public String toString() {
+		// Une question est representee par son texte
 		return getTexte();
 	}
 }

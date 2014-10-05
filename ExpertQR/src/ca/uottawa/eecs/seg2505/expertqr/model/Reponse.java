@@ -26,18 +26,23 @@ public class Reponse implements Serializable {
 	
 	private static final long serialVersionUID = 2028078514689553029L;
 	/**
+	 * Le ID de la reponse
 	 */
 	protected String ID = Constantes.STRING_VIDE;
 	/**
+	 * Le texte de la reponse
 	 */
 	protected String texte = Constantes.STRING_VIDE;
 	/**
+	 * Le ID de l'expert qui a donne la reponse
 	 */
 	protected String expertID = Constantes.STRING_VIDE;
 	/**
+	 * L'evaluation qui est donne par l'utilisateur a la reponse donnee
 	 */
 	protected int evaluation = -1;
 	/**
+	 * La question a laquelle on repond
 	 */
 	protected Question question = null;
 	
@@ -46,65 +51,71 @@ public class Reponse implements Serializable {
 	}
 	
 	/**
-	 * @return
+	 * @return Le ID de la reponse
 	 */
 	public String getID() {
 		return this.ID;
 	}
 	
+	/**
+	 * @param ID Le ID de la reponse
+	 */
 	public void setID(String ID) {
 		this.ID = ID;
 	}
 	
 	/**
-	 * @return
+	 * @return Le texte de la reponse
 	 */
 	public String getTexte() {
 		return texte;
 	}
 	
 	/**
-	 * @param texte
+	 * @param texte Le texte de la reponse
 	 */
 	public void setTexte(String texte) {
 		this.texte = texte;
 	}
 	
 	/**
-	 * @return
+	 * @return Le ID de l'expert qui a donne la reponse
 	 */
 	public String getExpertID() {
 		return expertID;
 	}
 	
 	/**
-	 * @param expertID
+	 * @param expertID Le ID de l'expert qui a donne la reponse
 	 */
 	public void setExpertID(String expertID) {
 		this.expertID = expertID;
 	}
 	
 	/**
-	 * @return
+	 * @return L'evaluation qui est donne par l'utilisateur a la reponse donnee
 	 */
 	public int getEvaluation() {
 		return evaluation;
 	}
 	
 	/**
-	 * @param eval
+	 * @param eval L'evaluation qui est donne par l'utilisateur a la reponse donnee
 	 */
 	public void setEvaluation(int eval) {
 		this.evaluation = eval;
 	}
 
 	/**
-	 * @return
+	 * @return La question a laquelle on repond
 	 */
 	public Question getQuestion() {
 		return question;
 	}
 	
+	/**
+	 * @return Le ID de la question a laquelle on repond
+	 */
 	public String getQuestionID() {
 		if (question != null) {
 			return question.getID();
@@ -113,7 +124,7 @@ public class Reponse implements Serializable {
 	}
 
 	/**
-	 * @param question
+	 * @param question La question a laquelle on repond
 	 */
 	public void setQuestion(Question question) {
 		this.question = question;
@@ -121,6 +132,7 @@ public class Reponse implements Serializable {
 	
 	@Override
 	public String toString() {
+		// Une reponse est representee par son texte
 		return getTexte();
 	}
 }

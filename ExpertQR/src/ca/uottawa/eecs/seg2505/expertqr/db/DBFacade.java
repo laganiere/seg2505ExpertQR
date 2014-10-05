@@ -28,24 +28,27 @@ public interface DBFacade {
 
 	/**
 	 * @param expertise L'expertise associée à une question
-	 * @return Une liste de questions qui nécessitent l'expertise dans le paramètre
+	 * @return Une liste de questions qui nécessitent l'expertise dans le paramètre.
+	 * La liste peut etre vide.
 	 */
 	public List<Question> getQuestionsPourExpertise(String expertise);
 	
 	/**
-	 * @param nom
-	 * @return
+	 * @param nom Le nom de l'utilisateur
+	 * @return Une liste de questions qui est demandee par cet utilisateur. La liste
+	 * peut etre vide.
 	 */
 	public List<Question> getQuestionsPourUtilisateur(String nom);
 	
 	/**
-	 * @param questionID
-	 * @return
+	 * @param questionID Le ID d'une question
+	 * @return La reponse a la question specifiee dans le parametre ou nulle si 
+	 * il n'y a pas de reponse.
 	 */
 	public Reponse getReponsePourQuestion(String questionID);
 	
 	/**
-	 * @return
+	 * @return La liste d'expertises dans le systeme.
 	 */
 	public List<Expertise> getListeExpertises();
 	

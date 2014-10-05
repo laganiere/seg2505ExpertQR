@@ -28,8 +28,8 @@ public class Utilisateur implements Serializable {
 	 * le nom de l'utilisateur est unique
 	 */
 	protected String nom = Constantes.STRING_VIDE;
-	// le role que l'utilisateur peut jouer
 	/**
+	 * Cette valeur n'est pas nulle si l'utilisateur est un expert
 	 */
 	protected Expert roleExpert = null;
 	
@@ -37,28 +37,28 @@ public class Utilisateur implements Serializable {
 	}
 	
 	/**
-	 * @return
+	 * @return le nom de l'utilisateur
 	 */
 	public String getNom() {
 		return nom;
 	}
 
 	/**
-	 * @param nom
+	 * @param nom le nom de l'utilisateur
 	 */
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
 
 	/**
-	 * @return
+	 * @return Un objet qui n'est pas nul si l'utilisateur est un expert
 	 */
 	public Expert getRoleExpert() {
 		return roleExpert;
 	}
 
 	/**
-	 * @param roleExpert
+	 * @param roleExpert Le role expert associe a l'utilisateur
 	 */
 	public void setRoleExpert(Expert roleExpert) {
 		this.roleExpert = roleExpert;

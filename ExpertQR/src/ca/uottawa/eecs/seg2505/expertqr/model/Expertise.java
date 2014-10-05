@@ -25,6 +25,7 @@ public class Expertise implements Serializable {
 
 	private static final long serialVersionUID = -3235529468817495364L;
 	/**
+	 * Les textes des expertises devraient etre uniques.
 	 */
 	protected String texte = Constantes.STRING_VIDE;
 	
@@ -32,14 +33,14 @@ public class Expertise implements Serializable {
 	}
 	
 	/**
-	 * @return
+	 * @return le texte de l'expertise
 	 */
 	public String getTexte() {
 		return texte;
 	}
 	
 	/**
-	 * @param texte
+	 * @param texte le texte de l'expertise
 	 */
 	public void setTexte(String texte) {
 		this.texte = texte;
@@ -47,6 +48,7 @@ public class Expertise implements Serializable {
 	
 	@Override
 	public String toString() {
+		// L'expertise est representee par sont texte
 		String s = getTexte();
 		if (s == null) {
 			s = Constantes.STRING_VIDE;
@@ -56,6 +58,7 @@ public class Expertise implements Serializable {
 	
 	@Override
 	public boolean equals(Object obj) {
+		// Deux expertises sont egales si elles ont le meme texte
 		if (obj instanceof Expertise) {
 			if (getTexte() != null) {
 				return getTexte().equals(((Expertise)obj).getTexte());

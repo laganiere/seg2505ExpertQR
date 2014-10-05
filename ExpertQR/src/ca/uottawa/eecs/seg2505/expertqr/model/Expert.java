@@ -23,9 +23,11 @@ public class Expert implements Serializable {
 	
 	private static final long serialVersionUID = 5736373841598132425L;
 	/**
+	 * Chaque expert doit avoir une expertise
 	 */
 	protected Expertise expertise = null;
 	/**
+	 * La cote de l'expert. La valeur est toujours la moyenne de toutes les cotes.
 	 */
 	protected double cote = -1;
 
@@ -34,28 +36,28 @@ public class Expert implements Serializable {
 	}
 
 	/**
-	 * @return
+	 * @return L'expertise de l'expert
 	 */
 	public Expertise getExpertise() {
 		return expertise;
 	}
 
 	/**
-	 * @param expertiseID
+	 * @param expertiseID Le ID de l'expertise de l'expert
 	 */
 	public void setExpertise(Expertise expertise) {
 		this.expertise = expertise;
 	}
 
 	/**
-	 * @return
+	 * @return La cote de l'expert
 	 */
 	public double getCote() {
 		return cote;
 	}
 
 	/**
-	 * @param cote
+	 * @param cote La cote de l'expert
 	 */
 	public void setCote(double cote) {
 		this.cote = cote;

@@ -29,11 +29,16 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 /**
+ * Classe pour transformer les objets du model ExpertQR en objets ParseObject
+ * et vice-versa.
+ * 
  * @author Hanna
  *
  */
 public class ParseObjectAdapteur {
 
+	// Definition des classes et des attributs dans Parse
+	
 	// Pour la classe Question
 	public static String questionClassName = "Question";
 	public static String questionID = "ID";
@@ -61,6 +66,10 @@ public class ParseObjectAdapteur {
 	
 	public static String erreurTag = "ParseFacade";
 		
+	/**
+	 * @param question Une question
+	 * @return L'objet ParseObject qui represente la question
+	 */
 	public static ParseObject from(Question question) {
 		ParseObject o = new ParseObject(questionClassName);
 		o.put(questionExpertiseReq, question.getExpertiseRequise().getTexte());
@@ -71,6 +80,10 @@ public class ParseObjectAdapteur {
 		return o;
 	}
 	
+	/**
+	 * @param reponse Une reponse
+	 * @return L'objet ParseObject qui represente la reponse
+	 */
 	public static ParseObject from(Reponse reponse) {
 		ParseObject o = new ParseObject(reponseClassName);
 		o.put(reponseEvaluation, reponse.getEvaluation());
@@ -81,12 +94,20 @@ public class ParseObjectAdapteur {
 		return o;
 	}
 	
+	/**
+	 * @param expertise Une expertise
+	 * @return L'objet ParseObject qui represente l'expertise
+	 */
 	public static ParseObject from(Expertise expertise) {
 		ParseObject o = new ParseObject(expertiseClassName);
 		o.put(expertiseTexte, expertise.getTexte());
 		return o;
 	}
 	
+	/**
+	 * @param utilisateur Un utilisateur
+	 * @return L'objet ParseObject qui represente l'utilisateur
+	 */
 	public static ParseUser from(Utilisateur utilisateur) {
 		ParseUser user = ParseFacade.getParseUser(utilisateur.getNom());
 		if (user == null) {
@@ -102,6 +123,10 @@ public class ParseObjectAdapteur {
 		return user;
 	}
 	
+	/**
+	 * @param pObject L'objet ParseObject qui represente une Question
+	 * @return une instance de Question
+	 */
 	public static Question toQuestion(ParseObject pObject) {
 		Question question = toQuestionSansReponse(pObject);
 		
@@ -149,6 +174,10 @@ public class ParseObjectAdapteur {
 		return question;
 	}
 	
+	/**
+	 * @param pObject L'objet ParseObject qui represente une reponse
+	 * @return une instance de Reponse
+	 */
 	public static Reponse toReponse(ParseObject pObject) {
 		Reponse reponse = toReponseSansQuestion(pObject);
 		
@@ -193,12 +222,20 @@ public class ParseObjectAdapteur {
 		return reponse;
 	}
 	
+	/**
+	 * @param pObject L'objet ParseObject qui represente une expertise
+	 * @return une instance d'Expertise
+	 */
 	public static Expertise toExpertise(ParseObject pObject) {
 		Expertise expertise = new Expertise();
 		expertise.setTexte(pObject.getString(expertiseTexte));
 		return expertise;
 	}
 	
+	/**
+	 * @param user L'objet ParseObject qui represente un utilisateur
+	 * @return une instance d'Utilisateur
+	 */
 	public static Utilisateur toUtilisateur(ParseUser user) {
 		Utilisateur utilisateur = new Utilisateur();
 		utilisateur.setNom(user.getUsername());
