@@ -38,7 +38,7 @@ public class Reponse implements Serializable {
 	 */
 	protected String expertID = Constantes.STRING_VIDE;
 	/**
-	 * L'evaluation qui est donne par l'utilisateur a la reponse donnee
+	 * L'evaluation qui est attribue par l'utilisateur a la reponse donnee
 	 */
 	protected int evaluation = -1;
 	/**
