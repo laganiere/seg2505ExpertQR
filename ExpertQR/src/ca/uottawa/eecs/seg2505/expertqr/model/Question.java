@@ -19,6 +19,7 @@ import java.util.UUID;
 import ca.uottawa.eecs.seg2505.expertqr.Constantes;
 
 /**
+ * La classe Question
  * @author Hanna
  *
  */
