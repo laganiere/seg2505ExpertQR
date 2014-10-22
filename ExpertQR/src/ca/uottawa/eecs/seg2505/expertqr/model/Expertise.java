@@ -25,7 +25,7 @@ public class Expertise implements Serializable {
 
 	private static final long serialVersionUID = -3235529468817495364L;
 	/**
-	 * Les textes des expertises devraient etre uniques.
+	 * Les expertises devraient etre uniques.
 	 */
 	protected String texte = Constantes.STRING_VIDE;
 	
