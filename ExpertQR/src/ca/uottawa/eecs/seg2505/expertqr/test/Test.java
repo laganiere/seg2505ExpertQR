@@ -52,19 +52,19 @@ public class Test {
 		expert.getRoleExpert().setExpertise(expertise);
 		
 		// sauvegarder les donnees
-		Delegateur.sauvegardeExpertise(expertise);
-		Delegateur.sauvegardeUtilisateur(utilisateur);
-		Delegateur.sauvegardeUtilisateur(expert);
-		Delegateur.sauvegardeQuestion(question);
+		Delegateur.getInstance().sauvegardeExpertise(expertise);
+		Delegateur.getInstance().sauvegardeUtilisateur(utilisateur);
+		Delegateur.getInstance().sauvegardeUtilisateur(expert);
+		Delegateur.getInstance().sauvegardeQuestion(question);
 		
 		// teste pour obtenir une question pour une expertise
-		List<Question> qPourExp = Delegateur.getQuestionsPourExpertise(expertise);
+		List<Question> qPourExp = Delegateur.getInstance().getQuestionsPourExpertise(expertise);
 		if (!qPourExp.contains(question)) {
 			System.out.println("Erreur: question pour expertise non existante");
 		}
 		
 		// teste pour obtenir une question pour un utilisateur
-		List<Question> qPourUti = Delegateur.getQuestionsPourUtilisateur(utilisateur);
+		List<Question> qPourUti = Delegateur.getInstance().getQuestionsPourUtilisateur(utilisateur);
 		if (!qPourUti.contains(question)) {
 			System.out.println("Erreur: question pour utilisateur non existante");
 		}
@@ -74,10 +74,10 @@ public class Test {
 		reponse.setTexte("C'est Hanna");
 		reponse.setQuestion(question);
 		question.setReponse(reponse);
-		Delegateur.sauvegardeReponse(reponse);
+		Delegateur.getInstance().sauvegardeReponse(reponse);
 		
 		// teste pour obtenir une reponse a une question
-		Reponse rep = Delegateur.getReponsePourQuestion(question);
+		Reponse rep = Delegateur.getInstance().getReponsePourQuestion(question);
 		if (rep == null) {
 			System.out.println("Erreur: reponse pour question non existante");
 		}

@@ -26,27 +26,51 @@ import ca.uottawa.eecs.seg2505.expertqr.model.Reponse;
 import ca.uottawa.eecs.seg2505.expertqr.model.Utilisateur;
 
 /**
- * Classe principale qui sera utilise par les projets qui dependent sur ExpertQR.
- * Toute la fonctionalite du model devraient etre acceder de cette classe.
+ * Classe principale qui sera utilise par les projets qui dependent de ExpertQR.
+ * Toute la fonctionalite du modele devrait etre acceder a partir de cette classe.
+ * 
+ * Cette classe a besoin d'une DBFacade pour fonctionner
  * 
  * @author Hanna
  */
 public class Delegateur {
 	
 	/**
+	 * La reference au Singleton
+	 */
+	private static Delegateur delegateur= null;
+	
+	/**
 	 * La specification d'une DBFacade est requise pour le fonctionnement du systeme
 	 */
-	public static DBFacade dbFacade = null;
-	public static QuestionControlleur questionControlleur = null;
-	public static ReponseControlleur reponseControlleur = null;
-	public static UtilisateurControlleur utilisateurControlleur = null;
-	public static ExpertiseControlleur expertiseControlleur = null;
+	private static DBFacade dbFacade = null;
+	public static void setDBFacade(DBFacade facade) {
+		dbFacade= facade;
+	}
+	
+	/**
+	 * afin d'obtenir le Singleton
+	 * @return
+	 */
+	public static Delegateur getInstance() {
+		
+		if (delegateur==null && dbFacade!=null) {
+			delegateur= new Delegateur(dbFacade);
+		}
+		
+		return delegateur;
+	}
+	
+	private QuestionControlleur questionControlleur = null;
+	private ReponseControlleur reponseControlleur = null;
+	private UtilisateurControlleur utilisateurControlleur = null;
+	private ExpertiseControlleur expertiseControlleur = null;
 	
 	/**
 	 * Methode pour assigner une DBFacade au systeme
 	 * @param dbFacade une classe qui implemente DBFacade
 	 */
-	public static void setDBFacade(DBFacade dbFacade) {
+	private Delegateur(DBFacade dbFacade) {
 		questionControlleur = new QuestionControlleur(dbFacade);
 		reponseControlleur = new ReponseControlleur(dbFacade);
 		utilisateurControlleur = new UtilisateurControlleur(dbFacade);
@@ -59,7 +83,7 @@ public class Delegateur {
 	 * @return Une liste de questions qui necessitent l'expertise. La liste serait vide 
 	 * si aucune question necessite cette expertise.
 	 */
-	public static List<Question> getQuestionsPourExpertise(Expertise expertise) {
+	public List<Question> getQuestionsPourExpertise(Expertise expertise) {
 		return questionControlleur.getQuestionsPourExpertise(expertise);
 	}
 	
@@ -69,7 +93,7 @@ public class Delegateur {
 	 * @return Une liste de questions qui sont demandes par un utilisateur. La liste serait vide 
 	 * si aucune question est demandee par cet utilisateur.
 	 */
-	public static List<Question> getQuestionsPourUtilisateur(Utilisateur utilisateur) {
+	public List<Question> getQuestionsPourUtilisateur(Utilisateur utilisateur) {
 		 return questionControlleur.getQuestionsPourUtilisateur(utilisateur);
 	}
 	
@@ -78,14 +102,14 @@ public class Delegateur {
 	 * @param question Une question pour laquelle on veut obtenir une reponse
 	 * @return La reponse a la question demandee ou bien nulle.
 	 */
-	public static Reponse getReponsePourQuestion(Question question) {
+	public Reponse getReponsePourQuestion(Question question) {
 		return reponseControlleur.getReponsePourQuestion(question);
 	}
 	
 	/**
 	 * @return Une liste d'expertise qui existent dans le systeme.
 	 */
-	public static List<Expertise> getListeExpertises() {
+	public List<Expertise> getListeExpertises() {
 		 return expertiseControlleur.getListeExpertises();
 	}
 	
@@ -93,7 +117,7 @@ public class Delegateur {
 	 * Méthode pour sauvegarder une Question
 	 * @param question
 	 */
-	public static void sauvegardeQuestion(Question question) {
+	public void sauvegardeQuestion(Question question) {
 		questionControlleur.sauvegardeQuestion(question);
 	}
 	
@@ -101,7 +125,7 @@ public class Delegateur {
 	 * Méthode pour sauvegarder une Reponse
 	 * @param reponse
 	 */
-	public static void sauvegardeReponse(Reponse reponse) {
+	public void sauvegardeReponse(Reponse reponse) {
 		reponseControlleur.sauvegardeReponse(reponse);
 	}
 	
@@ -109,7 +133,7 @@ public class Delegateur {
 	 * Méthode pour sauvegarder un Utilisateur
 	 * @param utilisateur
 	 */
-	public static void sauvegardeUtilisateur(Utilisateur utilisateur) {
+	public void sauvegardeUtilisateur(Utilisateur utilisateur) {
 		utilisateurControlleur.sauvegardeUtilisateur(utilisateur);
 	}
 	
@@ -117,7 +141,7 @@ public class Delegateur {
 	 * Méthode pour sauvegarder une Expertise
 	 * @param expertise
 	 */
-	public static void sauvegardeExpertise(Expertise expertise) {
+	public void sauvegardeExpertise(Expertise expertise) {
 		expertiseControlleur.sauvegardeExpertise(expertise);
 	}
 
